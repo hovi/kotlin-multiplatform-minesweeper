@@ -1,0 +1,42 @@
+plugins {
+    id 'org.jetbrains.kotlin.multiplatform' version '1.7.21'
+    id 'maven-publish'
+}
+
+group = 'com.github.hovi'
+version = '0.0.1'
+
+repositories {
+    jcenter()
+    mavenCentral()
+    maven { url 'https://maven.pkg.jetbrains.space/public/p/kotlinx-html/maven' }
+}
+
+kotlin {
+    jvm {
+        compilations.all {
+            kotlinOptions.jvmTarget = '1.8'
+        }
+        withJava()
+        testRuns["test"].executionTask.configure {
+            useJUnitPlatform()
+        }
+    }
+    sourceSets {
+        commonMain {
+
+        }
+        commonTest {
+            dependencies {
+                implementation kotlin('test')
+            }
+        }
+        jvmMain {
+            dependencies {
+            }
+        }
+        jvmTest {
+
+        }
+    }
+}
